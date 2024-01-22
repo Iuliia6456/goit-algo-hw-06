@@ -66,15 +66,16 @@ def kharkiv_metro_graph():
 
     return DG
 
-def draw_metro_graph(graph):
+def draw_metro_graph(graph, node_label_pos=None):
     options = {
         "node_color": ["red" if node in graph.red_nodes else "blue" if node in graph.blue_nodes else "green" for node in graph.nodes],
         "edge_color": ["purple" if edge in graph.transfer_edges else "red" if edge in graph.red_edges else "blue" if edge in graph.blue_edges else "green" for edge in graph.edges],
         "style": "solid",
-        "node_size": 500,
+        "node_size": 400,
         "width": [4 if edge in graph.transfer_edges else 1 for edge in graph.edges], 
         "with_labels": True,
         "font_size": 6,
+        "with_labels": True,
     }
 
     edge_colors_legend = {
@@ -92,21 +93,45 @@ def draw_metro_graph(graph):
 
     layout = nx.kamada_kawai_layout(graph)
     nx.draw(graph, pos=layout, **options)
+    labels = nx.get_edge_attributes(graph, "weight")
+    nx.draw_networkx_edge_labels(graph, pos=layout, edge_labels=labels, font_size=6, font_color="black", font_weight="bold", label_pos=0.5, horizontalalignment='center', verticalalignment='center')
 
     plt.title("Kharkiv metro", fontsize=15, fontweight="bold", pad=20, loc="center", fontstyle="italic")
     plt.show()
 
-def find_shortest_path(graph, start_node, target_node):
-    start_node = "Kholodna Hora"
-    target_node = "Studentska"
+# def find_shortest_path(graph, start_node, target_node):
 
-    entire_shortest_path = nx.single_source_dijkstra_path(graph, source=start_node)
-    entire_shortest_length = nx.single_source_dijkstra_path_length(graph, source=start_node)
+#     entire_shortest_path = nx.single_source_dijkstra_path(graph, source=start_node)
+#     entire_shortest_length = nx.single_source_dijkstra_path_length(graph, source=start_node)
 
-    shortest_path = entire_shortest_path[target_node]
-    travel_time = entire_shortest_length[target_node]
+#     shortest_path = entire_shortest_path[target_node]
+#     travel_time = entire_shortest_length[target_node]
 
-    return shortest_path, travel_time    
+#     return shortest_path, travel_time 
+
+def dijkstra(graph, start):
+    
+    distances = {vertex: float('infinity') for vertex in graph.nodes}
+    distances[start] = 0
+    unvisited = list(graph.nodes)
+
+    while unvisited:
+        current_vertex = min(unvisited, key=lambda vertex: distances[vertex])
+
+        if distances[current_vertex] == float('infinity'):
+            break
+
+        for neighbor in graph.neighbors(current_vertex):
+            weight = graph.get_edge_data(current_vertex, neighbor).get('weight', 0)
+            distance = distances[current_vertex] + weight
+
+            if distance < distances[neighbor]:
+                distances[neighbor] = distance
+
+        unvisited.remove(current_vertex)
+
+    return distances
+ 
 
 if __name__ == "__main__":
 
@@ -115,8 +140,8 @@ if __name__ == "__main__":
 
     start_node = "Kholodna Hora"
     target_node = "Studentska"
-    
-    shortest_path, travel_time = find_shortest_path(metro_graph, start_node, target_node)
 
-    print(f"\nShortest path from {start_node} to {target_node}: {shortest_path}")
-    print(f"\nTravel time: {travel_time} minutes\n")
+    entire_shortest_path = dijkstra(metro_graph, start_node)
+    shortest_path = entire_shortest_path[target_node]
+    print(f"\nEntire shortest path: {entire_shortest_path}")
+    print(f"\nTravel time from {start_node} to {target_node}: {shortest_path}\n")

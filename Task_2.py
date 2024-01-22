@@ -3,13 +3,13 @@ import networkx as nx
 from collections import deque
 
 def dfs_iterative(graph, start_vertex):
-    visited = set()
-    stack = [start_vertex]  
+    visited = []
+    stack = [start_vertex]
 
     while stack:
         vertex = stack.pop()  
         if vertex not in visited:    
-            visited.add(vertex)
+            visited.append(vertex)
             neighbors = list(graph[vertex])
             stack.extend(reversed(neighbors)) 
 
@@ -17,15 +17,15 @@ def dfs_iterative(graph, start_vertex):
 
 
 def bfs_iterative(graph, start):
-    visited = set()
+    visited = []
     queue = deque([start])
 
     while queue:  
         vertex = queue.popleft()
 
         if vertex not in visited:
-            visited.add(vertex)
-            queue.extend(set(graph[vertex]) - visited)
+            visited.append(vertex)
+            queue.extend(set(graph[vertex]) - set(visited))
 
     return visited  
 

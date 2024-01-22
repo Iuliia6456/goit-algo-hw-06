@@ -1,8 +1,9 @@
 After running the code we observe that the order of stations is different:
 
-DFS: {'Istorychnyy Muzey', 'Peremoga', 'Derzhprom', 'Industrial', 'Traktornyy Zavod', 'Barabashova', 'Pivdennyy Vokzal', '23 Serpnya', 'Pavlova', 'Gagarina Ave', 'Zakhysnykiv Ukrainy', 'Botanichnyy Sad', 'Tsentralnyy Rynok', 'Studentska', 'Heroiv Pratsi', 'University', 'Pushkinska', 'Kholodna Hora', 'Naukova', 'Oleksiivska', 'Sport Palace', 'Armiyska', 'Metrobudivnykiv', 'Kyivska', 'Zavod Malysheva', 'Maselskogo', 'Beketova', 'Maydan Konst', 'Turboatom', 'Sportyvna'}
+DFS: ['Metrobudivnykiv', 'Zakhysnykiv Ukrainy', 'Beketova', 'Derzhprom', 'Naukova', 'Botanichnyy Sad', '23 Serpnya', 'Oleksiivska', 'Peremoga', 'University', 'Pushkinska', 'Kyivska', 'Barabashova', 'Pavlova', 'Studentska', 'Heroiv Pratsi', 'Istorychnyy Muzey', 'Maydan Konst', 'Gagarina Ave', 'Sportyvna', 'Zavod Malysheva', 'Turboatom', 'Sport Palace', 'Armiyska', 'Maselskogo', 'Traktornyy Zavod', 'Industrial', 'Tsentralnyy Rynok', 'Pivdennyy Vokzal', 'Kholodna Hora']
 
-BFS: {'Istorychnyy Muzey', 'Peremoga', 'Derzhprom', 'Maydan Konst', 'Industrial', 'Traktornyy Zavod', 'Barabashova', 'Pivdennyy Vokzal', '23 Serpnya', 'Pavlova', 'Gagarina Ave', 'Zakhysnykiv Ukrainy', 'Botanichnyy Sad', 'Tsentralnyy Rynok', 'Studentska', 'Heroiv Pratsi', 'Pushkinska', 'Kholodna Hora', 'Naukova', 'Oleksiivska', 'Sport Palace', 'Armiyska', 'Metrobudivnykiv', 'Zavod Malysheva', 'Kyivska', 'Maselskogo', 'Beketova', 'University', 'Turboatom', 'Sportyvna'}
+BFS: ['Metrobudivnykiv', 'Zakhysnykiv Ukrainy', 'Sportyvna', 'Beketova', 'Gagarina Ave', 'Zavod Malysheva', 'Derzhprom', 'Maydan Konst', 'Turboatom', 
+'University', 'Naukova', 'Istorychnyy Muzey', 'Tsentralnyy Rynok', 'Sport Palace', 'Pushkinska', 'Botanichnyy Sad', 'Pivdennyy Vokzal', 'Armiyska', 'Kyivska', '23 Serpnya', 'Kholodna Hora', 'Maselskogo', 'Barabashova', 'Oleksiivska', 'Traktornyy Zavod', 'Pavlova', 'Peremoga', 'Industrial', 'Studentska', 'Heroiv Pratsi']
 
 Based on the provided output we can conclude that:
 
